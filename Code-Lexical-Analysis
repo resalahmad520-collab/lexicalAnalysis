@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <cctype>
 using namespace std;
 
 int main()
@@ -13,20 +14,49 @@ int main()
 
     while (ss >> token)
     {
-        if (token == "int" || token == "float" || token == "char" || token == "if" || token == "else")
+        // Keywords
+        if (token == "int" || token == "float" || token == "char" ||
+            token == "double" || token == "string" ||
+            token == "if" || token == "else" ||
+            token == "for" || token == "while" || token == "return")
+        {
             cout << token << " : Keyword" << endl;
+        }
 
-        else if (token == "+" || token == "-" || token == "*" || token == "/" || token == "=")
+        // Operators
+        else if (token == "+" || token == "-" || token == "*" ||
+                 token == "/" || token == "=" || token == "==" ||
+                 token == "!=" || token == "<" || token == ">" ||
+                 token == "<=" || token == ">=")
+        {
             cout << token << " : Operator" << endl;
+        }
 
-        else if (token == ";" || token == "," || token == "(" || token == ")")
+        // Separators
+        else if (token == ";" || token == "," ||
+                 token == "(" || token == ")" ||
+                 token == "{" || token == "}")
+        {
             cout << token << " : Separator" << endl;
+        }
 
+        // Numbers
         else if (isdigit(token[0]))
+        {
             cout << token << " : Number" << endl;
+        }
 
-        else
+        // Identifiers
+        else if (isalpha(token[0]) || token[0] == '_')
+        {
             cout << token << " : Identifier" << endl;
+        }
+
+        // Invalid Token
+        else
+        {
+            cout << token << " : Invalid Token" << endl;
+        }
     }
 
     return 0;
