@@ -1,0 +1,33 @@
+#include <iostream>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+    string code;
+    cout << "Enter code: ";
+    getline(cin, code);
+
+    string token;
+    stringstream ss(code);
+
+    while (ss >> token)
+    {
+        if (token == "int" || token == "float" || token == "char" || token == "if" || token == "else")
+            cout << token << " : Keyword" << endl;
+
+        else if (token == "+" || token == "-" || token == "*" || token == "/" || token == "=")
+            cout << token << " : Operator" << endl;
+
+        else if (token == ";" || token == "," || token == "(" || token == ")")
+            cout << token << " : Separator" << endl;
+
+        else if (isdigit(token[0]))
+            cout << token << " : Number" << endl;
+
+        else
+            cout << token << " : Identifier" << endl;
+    }
+
+    return 0;
+}
